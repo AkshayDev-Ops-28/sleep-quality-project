@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICMR-STS 2026 · Earphone Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- LANGUAGE BAR -->
+  <div class="lang-bar">
+    <span class="lang-label" data-en="Language" data-hi="भाषा">Language</span>
+
+    <div class="lang-toggle">
+      <button id="btn-en" class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button id="btn-hi" class="lang-btn" onclick="setLang('hi')">हिंदी</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <main class="main-container">
+
+    <!-- PAGE 0 -->
+    <section class="page active" id="page-0">
+      <div class="page-header">
+        <div class="badge" data-en="ICMR-STS 2026" data-hi="आईसीएमआर-एसटीएस 2026">ICMR-STS 2026</div>
+
+        <h1 class="page-title"
+          data-en="Participant Information"
+          data-hi="प्रतिभागी जानकारी">
+          Participant Information
+        </h1>
+
+        <p class="page-sub"
+          data-en="Please fill all required details accurately before proceeding."
+          data-hi="कृपया आगे बढ़ने से पहले सभी आवश्यक विवरण सही भरें।">
+          Please fill all required details accurately before proceeding.
+        </p>
+      </div>
+
+      <div class="card-grid">
+
+        <div class="form-card">
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Full Name" data-hi="पूरा नाम">Full Name</label>
+              <input id="fullName" type="text" data-ph-en="Enter full name" data-ph-hi="पूरा नाम दर्ज करें" placeholder="Enter full name">
+            </div>
+          </div>
+
+          <div class="field-row two-col">
+            <div class="field-group">
+              <label data-en="Date of Enrolment" data-hi="नामांकन की तिथि">Date of Enrolment</label>
+              <input id="dateEnrolment" type="date">
+            </div>
+
+            <div class="field-group">
+              <label data-en="Age (Years)" data-hi="आयु (वर्ष)">Age</label>
+              <input id="age" type="number" data-ph-en="Age" data-ph-hi="आयु" placeholder="Age">
+            </div>
+          </div>
+
+          <div class="field-row two-col">
+            <div class="field-group">
+              <label data-en="Date of Birth" data-hi="जन्म तिथि">Date of Birth</label>
+              <input id="dob" type="date">
+            </div>
+
+            <div class="field-group">
+              <label data-en="Contact Number" data-hi="संपर्क नंबर">Contact</label>
+              <input id="contact" type="tel" data-ph-en="Enter contact" data-ph-hi="संपर्क नंबर दर्ज करें" placeholder="Enter contact">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Email Address" data-hi="ईमेल पता">Email</label>
+              <input id="email" type="email" data-ph-en="Enter email address" data-ph-hi="ईमेल दर्ज करें" placeholder="Enter email">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Education" data-hi="शिक्षा">Education</label>
+              <input id="education" type="text" data-ph-en="Enter education details" data-ph-hi="शिक्षा विवरण दर्ज करें" placeholder="Education">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Occupation" data-hi="व्यवसाय">Occupation</label>
+              <input id="occupation" type="text" data-ph-en="Enter occupation details" data-ph-hi="व्यवसाय दर्ज करें" placeholder="Occupation">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Institution" data-hi="संस्थान">Institution</label>
+              <input id="institution" type="text" data-ph-en="Enter institution name" data-ph-hi="संस्थान का नाम दर्ज करें" placeholder="Institution">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Investigator Name" data-hi="अन्वेषक का नाम">Investigator Name</label>
+              <input id="investigatorName" type="text" data-ph-en="Investigator name" data-ph-hi="अन्वेषक का नाम दर्ज करें" placeholder="Investigator name">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card full">
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Address" data-hi="पता">Address</label>
+              <textarea id="address" rows="3" data-ph-en="Enter resident address" data-ph-hi="पता दर्ज करें" placeholder="Enter address"></textarea>
+            </div>
+          </div>
+
+          <div class="field-row two-col">
+            <div class="field-group">
+              <label data-en="Gender" data-hi="लिंग">Gender</label>
+              <div class="chip-group" id="gender">
+                <div class="chip" data-value="male" onclick="selectChip(this,'gender')" data-en="Male" data-hi="पुरुष">Male</div>
+                <div class="chip" data-value="female" onclick="selectChip(this,'gender')" data-en="Female" data-hi="महिला">Female</div>
+                <div class="chip" data-value="other" onclick="selectChip(this,'gender')" data-en="Other" data-hi="अन्य">Other</div>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label data-en="Residential" data-hi="आवासीय क्षेत्र">Residential</label>
+              <div class="chip-group" id="residential">
+                <div class="chip" data-value="urban" onclick="selectChip(this,'residential')" data-en="Urban" data-hi="शहरी">Urban</div>
+                <div class="chip" data-value="rural" onclick="selectChip(this,'residential')" data-en="Rural" data-hi="ग्रामीण">Rural</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <div></div>
+        <button class="btn-next" data-en="Continue" data-hi="जारी रखें" onclick="goNext(0)">Continue</button>
+      </div>
+    </section>
+
+    <!-- PAGE 1 -->
+    <section class="page" id="page-1">
+      <div class="page-header">
+        <div class="badge" data-en="Study Route" data-hi="अध्ययन मार्ग">Study Route</div>
+
+        <h1 class="page-title" data-en="Select Study Form" data-hi="अध्ययन प्रपत्र चुनें">Select Study Form</h1>
+      </div>
+
+      <div class="selector-cards">
+
+        <div class="selector-card" id="card-pta" onclick="selectForm('pta')">
+          <span class="selector-icon">🎧</span>
+          <div class="selector-label" data-en="Primary Study" data-hi="प्राथमिक अध्ययन">Primary Study</div>
+          <div class="selector-title" data-en="PTA Form" data-hi="पीटीए प्रपत्र">PTA Form</div>
+          <div class="selector-desc" data-en="Earphone usage, hearing profile and sleep habits." data-hi="ईयरफोन का उपयोग, सुनने का विवरण और नींद की आदतें।">Earphone usage, hearing profile and sleep habits.</div>
+        </div>
+
+        <div class="selector-card" id="card-psqi" onclick="selectForm('psqi')">
+          <span class="selector-icon">🌙</span>
+          <div class="selector-label" data-en="Sleep Assessment" data-hi="नींद का मूल्यांकन">Sleep Assessment</div>
+          <div class="selector-title" data-en="PSQI Form" data-hi="पीएसक्यूआई प्रपत्र">PSQI Form</div>
+          <div class="selector-desc" data-en="Pittsburgh Sleep Quality Index questionnaire." data-hi="पिट्सबर्ग नींद गुणवत्ता सूचकांक प्रश्नावली।">Pittsburgh Sleep Quality Index questionnaire.</div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" data-en="Back" data-hi="पीछे" onclick="goBack(1)">Back</button>
+        <button class="btn-next" id="form-select-next" disabled onclick="goFromFormSelect()" data-en="Continue" data-hi="जारी रखें">Continue</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page" id="page-2">
+      <div class="page-header">
+        <div class="badge" data-en="Eligibility" data-hi="पात्रता">Eligibility</div>
+        <h1 class="page-title" data-en="Inclusion / Exclusion Criteria" data-hi="समावेशन / बहिष्करण मानदंड">Inclusion / Exclusion</h1>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- B1. INCLUSION CRITERIA -->
+        <div class="form-card">
+          <div class="card-section-title inclusion" data-en="B1. Inclusion Criteria" data-hi="B1. समावेशन मानदंड">B1. Inclusion Criteria</div>
+          <p style="font-size: 0.85rem; color: #666; margin: -5px 0 15px 0; font-style: italic;" data-en="All criteria must be YES to proceed." data-hi="आगे बढ़ने के लिए सभी मानदंड हाँ (YES) होने चाहिए।">All criteria must be YES to proceed.</p>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Age between 18–35 years" data-hi="आयु 18-35 वर्ष के बीच">Age between 18–35 years</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_age" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_age" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Uses in-ear type earphones (IEM – fits snugly inside the ear canal)" data-hi="इन-ईयर प्रकार के ईयरफ़ोन का उपयोग करता है (आईईएम - कान की नली के अंदर अच्छी तरह फिट बैठता है)">Uses in-ear type earphones (IEM – fits snugly inside the ear canal)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_iem" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_iem" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Uses earphones for at least 1 hour per day" data-hi="प्रतिदिन कम से कम 1 घंटे ईयरफ़ोन का उपयोग करता है">Uses earphones for at least 1 hour per day</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_duration" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_duration" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Has been using earphones consistently for the past 6 months or more" data-hi="पिछले 6 महीनों या उससे अधिक समय से लगातार ईयरफ़ोन का उपयोग कर रहा है">Has been using earphones consistently for the past 6 months or more</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_history" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_history" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Willing to undergo pure tone audiometry (PTA) and complete the PSQI questionnaire" data-hi="प्योर टोन ऑडियोमेट्री (पीटीए) कराने और पीएसक्यूआई प्रश्नावली को पूरा करने के लिए तैयार है">Willing to undergo pure tone audiometry (PTA) and complete the PSQI questionnaire</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_tests" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_tests" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Provides written informed consent" data-hi="लिखित सूचित सहमति प्रदान करता है">Provides written informed consent</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="inc_consent" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="inc_consent" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2. EXCLUSION CRITERIA -->
+        <div class="form-card">
+          <div class="card-section-title exclusion" data-en="B2. Exclusion Criteria" data-hi="B2. बहिष्करण मानदंड">B2. Exclusion Criteria</div>
+          <p style="font-size: 0.85rem; color: #666; margin: -5px 0 15px 0; font-style: italic;" data-en="Any YES response below means the participant is NOT eligible." data-hi="नीचे दी गई किसी भी प्रतिक्रिया में हाँ (YES) होने पर प्रतिभागी पात्र नहीं होगा।">Any YES response below means the participant is NOT eligible.</p>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Known history of permanent or temporary hearing loss" data-hi="स्थायी या अस्थायी सुनवाई हानि (बहरापन) का ज्ञात इतिहास">Known history of permanent or temporary hearing loss</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_hearing_loss" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_hearing_loss" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Known ear diseases (otitis media, otitis externa, perforated TM, etc.)" data-hi="कान के ज्ञात रोग (ओटिटिस मीडिया, ओटिटिस एक्सटर्ना, कान का पर्दा फटना, आदि)">Known ear diseases (otitis media, otitis externa, perforated TM, etc.)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_ear_disease" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_ear_disease" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Prolonged tinnitus (ringing/buzzing in ears)" data-hi="लंबे समय तक टिनिटस (कानों में बजना या भिनभिनाना)">Prolonged tinnitus (ringing/buzzing in ears)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_tinnitus" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_tinnitus" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Current symptoms: ear pain, congestion, discharge, or ear trauma" data-hi="वर्तमान लक्षण: कान दर्द, भारीपन, मवाद का बहना, या कान में चोट">Current symptoms: ear pain, congestion, discharge, or ear trauma</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_symptoms" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_symptoms" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Diagnosed systemic disease (diabetes, hypertension, cardiovascular disease, etc.)" data-hi="निदानित सिस्टेमिक रोग (मधुमेह, उच्च रक्तचाप, हृदय रोग, आदि)">Diagnosed systemic disease (diabetes, hypertension, cardiovascular disease, etc.)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_systemic" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_systemic" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Diagnosed psychiatric disorder" data-hi="निदानित मानसिक विकार">Diagnosed psychiatric disorder</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_psychiatric" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_psychiatric" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Diagnosed sleep disorder (e.g. insomnia, sleep apnoea)" data-hi="निदानित नींद विकार (जैसे अनिद्रा, स्लीप एपनिया)">Diagnosed sleep disorder (e.g. insomnia, sleep apnoea)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_sleep_disorder" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_sleep_disorder" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Currently on treatment for any of the above disorders" data-hi="वर्तमान में उपरोक्त विकारों में से किसी का उपचार चल रहा है">Currently on treatment for any of the above disorders</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_treatment" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_treatment" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Use of ototoxic drugs: NSAIDs (regular), aminoglycosides (gentamicin), loop diuretics (furosemide), chloroquine, cisplatin, etc." data-hi="ओटोटॉक्सिक दवाओं का उपयोग: एनएसएआईडी (नियमित), अमीनोग्लाइकोसाइड्स (जेंटामाइसिन), लूप डाइयुरेटिक्स (फ्यूरोसेमाइड), क्लोरोक्वीन, सिस्प्लैटिन, आदि">Use of ototoxic drugs: NSAIDs (regular), aminoglycosides (gentamicin), loop diuretics (furosemide), chloroquine, cisplatin, etc.</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_ototoxic" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_ototoxic" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Uses over-ear / on-ear headphones predominantly (not in-ear type)" data-hi="मुख्य रूप से ओवर-ईयर / ऑन-ईयर हेडफ़ोन का उपयोग करता है (इन-ईयर प्रकार नहीं)">Uses over-ear / on-ear headphones predominantly (not in-ear type)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="exc_headphones_predominant" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="exc_headphones_predominant" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B3. ELIGIBILITY DECISION -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="B3. Eligibility Decision" data-hi="B3. पात्रता निर्णय">B3. Eligibility Decision</div>
+          
+          <div class="field-row" style="margin-top: 15px;">
+            <div class="field-group">
+              <div class="chip-group" id="eligibility-decision">
+                <div class="chip" data-value="eligible" style="border-color: #2e7d32; color: #2e7d32;" data-en="ELIGIBLE — Proceed to Section C" data-hi="पात्र — भाग C पर आगे बढ़ें">ELIGIBLE — Proceed to Section C</div>
+                <div class="chip" data-value="not-eligible" style="border-color: #d32f2f; color: #d32f2f;" data-en="NOT ELIGIBLE" data-hi="अपात्र">NOT ELIGIBLE</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-row" id="reason-container" style="margin-top: 15px;">
+            <div class="field-group">
+              <label data-en="Reason for Non-Eligibility" data-hi="अपात्रता का कारण">Reason for Non-Eligibility</label>
+              <input id="nonEligibilityReason" type="text" data-ph-en="Specify reason if participant is not eligible" data-ph-hi="अपात्र होने पर कारण निर्दिष्ट करें" placeholder="Specify reason if participant is not eligible">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" data-en="Back" data-hi="पीछे" onclick="goBack(2)">Back</button>
+        <button class="btn-next" id="elig-next-btn" data-en="Submit / Save" data-hi="जमा करें / सहेजें" onclick="goNext(2)">Submit / Save</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="page" id="page-3">
+      <div class="page-header">
+        <div class="badge" data-en="Section C" data-hi="भाग C">Section C</div>
+        <h1 class="page-title" data-en="Earphone Usage Profile" data-hi="ईयरफ़ोन उपयोग प्रोफाइल">Earphone Usage Profile</h1>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- C1 to C3: TYPE & BRAND PROFILE -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="C1. Type of Earphones Used (Currently)" data-hi="C1. उपयोग किए जाने वाले ईयरफ़ोन का प्रकार (वर्तमान में)">C1. Type of Earphones Used (Currently)</div>
+          <div class="field-row" style="margin-top: 10px;">
+            <div class="field-group">
+              <div class="chip-group" id="c1-types">
+                <div class="chip" data-value="in-ear" onclick="selectChip(this,'c1-types')" data-en="In-ear (canal type / IEM)" data-hi="इन-ईयर (कैनाल प्रकार / आईईएम)">In-ear (canal type / IEM)</div>
+                <div class="chip" data-value="tws" onclick="selectChip(this,'c1-types')" data-en="True Wireless (TWS / AirPods-type)" data-hi="ट्रू वायरलेस (टीडब्ल्यूएस / एयरपॉड्स प्रकार)">True Wireless (TWS / AirPods-type)</div>
+                <div class="chip" data-value="wired" onclick="selectChip(this,'c1-types')" data-en="Wired in-ear" data-hi="वायर्ड इन-ईयर">Wired in-ear</div>
+                <div class="chip" data-value="other" onclick="selectChip(this,'c1-types')" data-en="Other" data-hi="अन्य">Other</div>
+              </div>
+            </div>
+          </div>
+          <div class="field-row" style="margin-top: 10px;">
+            <div class="field-group">
+              <input id="c1OtherSpecify" type="text" data-ph-en="If other, please specify..." data-ph-hi="यदि अन्य है, तो कृपया निर्दिष्ट करें..." placeholder="If other, please specify...">
+            </div>
+          </div>
+
+          <div class="card-section-title" style="margin-top: 25px;" data-en="C2. Brand / Company of Earphones (Primary pair)" data-hi="C2. ईयरफ़ोन का ब्रांड / कंपनी (प्राथमिक जोड़ी)">C2. Brand / Company of Earphones (Primary pair)</div>
+          <div class="field-row two-col" style="margin-top: 10px;">
+            <div class="field-group">
+              <label data-en="Brand / Company Name" data-hi="ब्रांड / कंपनी का नाम">Brand / Company Name</label>
+              <input id="c2Brand" type="text" data-ph-en="Primary pair brand" data-ph-hi="प्राथमिक जोड़ी का ब्रांड" placeholder="Primary pair brand">
+            </div>
+            <div class="field-group">
+              <label data-en="Model (if known)" data-hi="मॉडल (यदि ज्ञात हो)">Model (if known)</label>
+              <input id="c2Model" type="text" data-ph-en="Model name/number" data-ph-hi="मॉडल का नाम/नंबर" placeholder="Model name/number">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label data-en="Price range of earphones" data-hi="ईयरफ़ोन की कीमत सीमा">Price range of earphones</label>
+              <input id="c2Price" type="text" data-ph-en="Approximate price" data-ph-hi="अनुमानित कीमत" placeholder="Approximate price">
+            </div>
+          </div>
+
+          <div class="card-section-title" style="margin-top: 25px;" data-en="C3. Additional Pairs (If you use more than one pair)" data-hi="C3. अतिरिक्त जोड़ियां (यदि आप एक से अधिक जोड़ी का उपयोग करते हैं)">C3. Additional Pairs (If you use more than one pair)</div>
+          <div style="overflow-x: auto; margin-top: 10px;">
+            <table style="width:100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+              <thead>
+                <tr style="background-color: #1a365d; color: white;">
+                  <th style="padding: 10px; border: 1px solid #ddd;" data-en="Pair #" data-hi="जोड़ी #">Pair #</th>
+                  <th style="padding: 10px; border: 1px solid #ddd;" data-en="Brand / Company" data-hi="ब्रांड / कंपनी">Brand / Company</th>
+                  <th style="padding: 10px; border: 1px solid #ddd;" data-en="Model (if known)" data-hi="मॉडल (यदि ज्ञात हो)">Model (if known)</th>
+                  <th style="padding: 10px; border: 1px solid #ddd;" data-en="Approx. Price (₹)" data-hi="अनुमानित कीमत (₹)">Approx. Price (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: center;">2</td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair2Brand" type="text" style="width:100%; border:none; padding:5px;"></td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair2Model" type="text" style="width:100%; border:none; padding:5px;"></td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair2Price" type="number" style="width:100%; border:none; padding:5px;"></td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: center;">3</td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair3Brand" type="text" style="width:100%; border:none; padding:5px;"></td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair3Model" type="text" style="width:100%; border:none; padding:5px;"></td>
+                  <td style="padding: 5px; border: 1px solid #ddd;"><input id="c3Pair3Price" type="number" style="width:100%; border:none; padding:5px;"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- C4 & C5: DURATION -->
+        <div class="form-card">
+          <div class="card-section-title" data-en="C4. Duration of Earphone Use – Daily" data-hi="C4. ईयरफ़ोन उपयोग की अवधि - दैनिक">C4. Duration of Earphone Use – Daily</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;" data-en="On a typical day, how many hours do you use earphones in total?" data-hi="एक सामान्य दिन में, आप कुल कितने घंटे ईयरफ़ोन का उपयोग करते हैं?">On a typical day, how many hours do you use earphones in total?</p>
+          <div class="chip-group vertical" id="c4-daily" style="display: flex; flex-direction: column; gap: 5px;">
+            <div class="chip" data-value="lt-1h" onclick="selectChip(this,'c4-daily')" data-en="&lt; 1 hour / day" data-hi="&lt; 1 घंटा / दिन">&lt; 1 hour / day</div>
+            <div class="chip" data-value="1-2h" onclick="selectChip(this,'c4-daily')" data-en="1–2 hours / day" data-hi="1-2 घंटे / दिन">1–2 hours / day</div>
+            <div class="chip" data-value="2-4h" onclick="selectChip(this,'c4-daily')" data-en="2–4 hours / day" data-hi="2-4 घंटे / दिन">2–4 hours / day</div>
+            <div class="chip" data-value="4-6h" onclick="selectChip(this,'c4-daily')" data-en="4–6 hours / day" data-hi="4-6 घंटे / दिन">4–6 hours / day</div>
+            <div class="chip" data-value="gt-6h" onclick="selectChip(this,'c4-daily')" data-en="&gt; 6 hours / day" data-hi="&gt; 6 घंटे / दिन">&gt; 6 hours / day</div>
+          </div>
+          <div class="field-row" style="margin-top: 15px;">
+            <div class="field-group">
+              <label data-en="Specify approximate hours per day" data-hi="प्रति दिन अनुमानित घंटे निर्दिष्ट करें">Specify approximate hours per day</label>
+              <input id="c4HoursExact" type="number" step="0.1" data-ph-en="e.g. 2.5" data-ph-hi="जैसे 2.5" placeholder="e.g. 2.5">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="card-section-title" data-en="C5. Total Cumulative Duration" data-hi="C5. कुल संचयी अवधि">C5. Total Cumulative Duration</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;" data-en="How long have you been regularly using earphones?" data-hi="आप कब से नियमित रूप से ईयरफ़ोन का उपयोग कर रहे हैं?">How long have you been regularly using earphones?</p>
+          <div class="chip-group vertical" id="c5-cumulative" style="display: flex; flex-direction: column; gap: 5px;">
+            <div class="chip" data-value="6m-1y" onclick="selectChip(this,'c5-cumulative')" data-en="6 months – 1 year" data-hi="6 महीने – 1 वर्ष">6 months – 1 year</div>
+            <div class="chip" data-value="1-2y" onclick="selectChip(this,'c5-cumulative')" data-en="1–2 years" data-hi="1-2 वर्ष">1–2 years</div>
+            <div class="chip" data-value="2-4y" onclick="selectChip(this,'c5-cumulative')" data-en="2–4 years" data-hi="2-4 वर्ष">2–4 years</div>
+            <div class="chip" data-value="4-6y" onclick="selectChip(this,'c5-cumulative')" data-en="4–6 years" data-hi="4-6 वर्ष">4–6 years</div>
+            <div class="chip" data-value="gt-6y" onclick="selectChip(this,'c5-cumulative')" data-en="&gt; 6 years" data-hi="&gt; 6 वर्ष">&gt; 6 years</div>
+          </div>
+          <div class="field-row two-col" style="margin-top: 15px;">
+            <div class="field-group">
+              <label data-en="Specify Years" data-hi="वर्ष निर्दिष्ट करें">Specify Years</label>
+              <input id="c5Years" type="number" data-ph-en="Years" data-ph-hi="वर्ष" placeholder="Years">
+            </div>
+            <div class="field-group">
+              <label data-en="Specify Months" data-hi="महीने निर्दिष्ट करें">Specify Months</label>
+              <input id="c5Months" type="number" data-ph-en="Months" data-ph-hi="महीने" placeholder="Months">
+            </div>
+          </div>
+        </div>
+
+        <!-- C6 & C7: VOLUME SETTINGS -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="C6. Listening Volume" data-hi="C6. सुनने की आवाज़ (वॉल्यूम)">C6. Listening Volume</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;" data-en="At what volume level do you typically listen? (0 = silent, 100 = maximum device volume)" data-hi="आप आमतौर पर किस वॉल्यूम स्तर पर सुनते हैं? (0 = मौन, 100 = अधिकतम डिवाइस वॉल्यूम)">At what volume level do you typically listen? (0 = silent, 100 = maximum device volume)</p>
+          <div class="chip-group" id="c6-volume">
+            <div class="chip" data-value="lt-40" onclick="selectChip(this,'c6-volume')" data-en="&lt; 40% of max volume" data-hi="&lt; 40% अधिकतम वॉल्यूम">&lt; 40% of max volume</div>
+            <div class="chip" data-value="40-60" onclick="selectChip(this,'c6-volume')" data-en="40–60% of max volume" data-hi="40–60% अधिकतम वॉल्यूम">40–60% of max volume</div>
+            <div class="chip" data-value="60-80" onclick="selectChip(this,'c6-volume')" data-en="60–80% of max volume" data-hi="60–80% अधिकतम वॉल्यूम">60–80% of max volume</div>
+            <div class="chip" data-value="gt-80" onclick="selectChip(this,'c6-volume')" data-en="&gt; 80% of max volume" data-hi="&gt; 80% अधिकतम वॉल्यूम">&gt; 80% of max volume</div>
+          </div>
+          <div class="field-row two-col" style="margin-top: 15px;">
+            <div class="field-group">
+              <label data-en="If your device shows steps (e.g. 0-15 or 0-100), specify Current Level" data-hi="यदि आपका डिवाइस स्टेप्स दिखाता है (जैसे 0-15 या 0-100), तो वर्तमान स्तर निर्दिष्ट करें">If your device shows steps (e.g. 0-15 or 0-100), specify Current Level</label>
+              <input id="c6StepCurrent" type="number" data-ph-en="Your level" data-ph-hi="आपका स्तर" placeholder="Your level">
+            </div>
+            <div class="field-group">
+              <label data-en="Max Level Possible" data-hi="अधिकतम संभव स्तर">Max Level Possible</label>
+              <input id="c6StepMax" type="number" data-ph-en="Max scale" data-ph-hi="अधिकतम स्केल" placeholder="Max scale">
+            </div>
+          </div>
+
+          <div class="card-section-title" style="margin-top: 25px;" data-en="C7. Do you use volume-limiting features or safe listening mode on your device?" data-hi="C7. क्या आप अपने डिवाइस पर वॉल्यूम-सीमित करने वाली सुविधाओं या सुरक्षित सुनने के मोड का उपयोग करते हैं?">C7. Do you use volume-limiting features or safe listening mode on your device?</div>
+          <div class="field-row" style="margin-top: 10px;">
+            <div class="field-group">
+              <div class="chip-group" id="c7-safe-mode">
+                <div class="chip" data-value="always" onclick="selectChip(this,'c7-safe-mode')" data-en="Yes, always" data-hi="हाँ, हमेशा">Yes, always</div>
+                <div class="chip" data-value="sometimes" onclick="selectChip(this,'c7-safe-mode')" data-en="Sometimes" data-hi="कभी-कभी">Sometimes</div>
+                <div class="chip" data-value="no" onclick="selectChip(this,'c7-safe-mode')" data-en="No" data-hi="नहीं">No</div>
+                <div class="chip" data-value="unaware" onclick="selectChip(this,'c7-safe-mode')" data-en="Not aware of the feature" data-hi="इस सुविधा के बारे में जानकारी नहीं है">Not aware of the feature</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C8 & C9: PURPOSE AND TIMINGS -->
+        <div class="form-card">
+          <div class="card-section-title" data-en="C8. Primary Purpose of Earphone Use" data-hi="C8. ईयरफ़ोन के उपयोग का प्राथमिक उद्देश्य">C8. Primary Purpose of Earphone Use</div>
+          <div class="chip-group vertical" id="c8-purpose" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+            <div class="chip" data-value="music" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Music / Entertainment" data-hi="संगीत / मनोरंजन">Music / Entertainment</div>
+            <div class="chip" data-value="calls" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Phone calls" data-hi="फ़ोन कॉल्स">Phone calls</div>
+            <div class="chip" data-value="study" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Study / Online lectures" data-hi="पढ़ाई / ऑनलाइन लेक्चर्स">Study / Online lectures</div>
+            <div class="chip" data-value="gaming" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Gaming" data-hi="गेमिंग">Gaming</div>
+            <div class="chip" data-value="podcasts" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Podcasts / Audiobooks" data-hi="पॉडकास्ट / ऑडियोबुक्स">Podcasts / Audiobooks</div>
+            <div class="chip" data-value="multiple" onclick="toggleMultiChip(this,'c8-purpose')" data-en="Multiple purposes" data-hi="विविध उद्देश्य">Multiple purposes</div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="card-section-title" data-en="C9. Time of Day – When Do You Use Earphones Most?" data-hi="C9. दिन का समय - आप ईयरफ़ोन का सबसे अधिक उपयोग कब करते हैं?">C9. Time of Day – When Do You Use Earphones Most?</div>
+          <div class="chip-group vertical" id="c9-time" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+            <div class="chip" data-value="morning" onclick="selectChip(this,'c9-time')" data-en="Morning (6 AM – 12 PM)" data-hi="सुबह (6 AM - 12 PM)">Morning (6 AM – 12 PM)</div>
+            <div class="chip" data-value="afternoon" onclick="selectChip(this,'c9-time')" data-en="Afternoon (12 PM – 6 PM)" data-hi="दोपहर (12 PM - 6 PM)">Afternoon (12 PM – 6 PM)</div>
+            <div class="chip" data-value="evening" onclick="selectChip(this,'c9-time')" data-en="Evening (6 PM – 10 PM)" data-hi="शाम (6 PM - 10 PM)">Evening (6 PM – 10 PM)</div>
+            <div class="chip" data-value="night" onclick="selectChip(this,'c9-time')" data-en="Night (10 PM – 2 AM)" data-hi="रात (10 PM - 2 AM)">Night (10 PM – 2 AM)</div>
+            <div class="chip" data-value="none" onclick="selectChip(this,'c9-time')" data-en="No fixed pattern" data-hi="कोई निश्चित पैटर्न नहीं">No fixed pattern</div>
+          </div>
+        </div>
+
+        <!-- C10 & C11: BEHAVIOR & OTHER HEADPHONES -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="C10. Do you use earphones while trying to fall asleep or in bed?" data-hi="C10. क्या आप सोने की कोशिश करते समय या बिस्तर पर ईयरफ़ोन का उपयोग करते हैं?">C10. Do you use earphones while trying to fall asleep or in bed?</div>
+          <div class="field-row" style="margin-top: 10px;">
+            <div class="field-group">
+              <div class="chip-group" id="c10-sleep">
+                <div class="chip" data-value="never" onclick="selectChip(this,'c10-sleep')" data-en="Never" data-hi="कभी नहीं">Never</div>
+                <div class="chip" data-value="rarely" onclick="selectChip(this,'c10-sleep')" data-en="Rarely (&lt; once a week)" data-hi="शायद ही कभी (सप्ताह में एक बार से कम)">Rarely (&lt; once a week)</div>
+                <div class="chip" data-value="sometimes" onclick="selectChip(this,'c10-sleep')" data-en="Sometimes (1–3 times/week)" data-hi="कभी-कभी (सप्ताह में 1-3 बार)">Sometimes (1–3 times/week)</div>
+                <div class="chip" data-value="often" onclick="selectChip(this,'c10-sleep')" data-en="Often (4–6 times/week)" data-hi="अक्सर (सप्ताह में 4-6 बार)">Often (4–6 times/week)</div>
+                <div class="chip" data-value="every" onclick="selectChip(this,'c10-sleep')" data-en="Every night" data-hi="हर रात">Every night</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section-title" style="margin-top: 25px;" data-en="C11. Over-Ear / On-Ear Headphone Use (if any)" data-hi="C11. ओवर-ईयर / ऑन-ईयर हेडफ़ोन का उपयोग (यदि कोई हो)">C11. Over-Ear / On-Ear Headphone Use (if any)</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px; font-style: italic;" data-en="This study focuses on in-ear type, but please specify if you also use over-ear / on-ear headphones." data-hi="यह अध्ययन इन-ईयर प्रकार पर केंद्रित है, लेकिन कृपया निर्दिष्ट करें कि क्या आप ओवर-ईयर / ऑन-ईयर हेडफ़ोन का भी उपयोग करते हैं।">This study focuses on in-ear type, but please specify if you also use over-ear / on-ear headphones.</p>
+          
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="Do you use over-ear or on-ear headphones in addition to in-ear earphones?" data-hi="क्या आप इन-ईयर ईयरफ़ोन के अलावा ओवर-ईयर या ऑन-ईयर हेडफ़ोन का उपयोग करते हैं?">Do you use over-ear or on-ear headphones in addition to in-ear earphones?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="c11_use" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="c11_use" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="field-row two-col" style="margin-top: 15px;">
+            <div class="field-group">
+              <label data-en="If yes — Hours per day with over-ear / on-ear" data-hi="यदि हाँ — ओवर-ईयर / ऑन-ईयर के साथ प्रतिदिन घंटे">If yes — Hours per day with over-ear / on-ear</label>
+              <input id="c11Hours" type="number" step="0.1" data-ph-en="Hours" data-ph-hi="घंटे" placeholder="Hours">
+            </div>
+            <div class="field-group">
+              <label data-en="Brand / Type" data-hi="ब्रांड / प्रकार">Brand / Type</label>
+              <input id="c11BrandType" type="text" data-ph-en="Specify brand and style" data-ph-hi="ब्रांड और स्टाइल निर्दिष्ट करें" placeholder="Specify brand and style">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION D: HEARING SYMPTOMS -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="Section D. Hearing Symptoms" data-hi="भाग D. सुनने के लक्षण">Section D. Hearing Symptoms</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;" data-en="Please answer YES or NO for each symptom experienced during the past month." data-hi="कृपया पिछले महीने के दौरान अनुभव किए गए प्रत्येक लक्षण के लिए हाँ (YES) या नहीं (NO) का उत्तर दें।">Please answer YES or NO for each symptom experienced during the past month.</p>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D1. Pain or ache in either ear?" data-hi="D1. किसी भी कान में दर्द या तकलीफ़?">D1. Pain or ache in either ear?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d1" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d1" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D2. History of fluid or pus discharge from ears?" data-hi="D2. कानों से तरल पदार्थ या मवाद बहने का इतिहास?">D2. History of fluid or pus discharge from ears?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d2" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d2" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D3. Buzzing, ringing, or whistling sounds in either ear? (Tinnitus)" data-hi="D3. किसी भी कान में भिनभिनाहट, बजना या सीटी जैसी आवाज़? (टिनिटस)">D3. Buzzing, ringing, or whistling sounds in either ear? (Tinnitus)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d3" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d3" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D4. Sensation of spinning or loss of balance? (Vertigo)" data-hi="D4. सिर घूमने या संतुलन खोने का अहसास? (वर्टिगो)">D4. Sensation of spinning or loss of balance? (Vertigo)</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d4" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d4" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D5. Difficulty understanding speech, especially in noisy environments?" data-hi="D5. शोर-शराबे वाले वातावरण में बातचीत समझने में कठिनाई?">D5. Difficulty understanding speech, especially in noisy environments?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d5" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d5" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D6. Sensation of fullness or blockage in either ear?" data-hi="D6. किसी भी कान में भारीपन या बंद होने का अहसास?">D6. Sensation of fullness or blockage in either ear?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d6" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d6" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="D7. Do you feel your hearing has reduced recently?" data-hi="D7. क्या आपको लगता है कि हाल ही में आपकी सुनने की क्षमता कम हुई है?">D7. Do you feel your hearing has reduced recently?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="d7" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="d7" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION E: SLEEP HABITS -->
+        <div class="form-card full">
+          <div class="card-section-title" data-en="Section E. Sleep Habits & Symptoms" data-hi="भाग E. नींद की आदतें और लक्षण">Section E. Sleep Habits & Symptoms</div>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;" data-en="Please answer YES or NO for each statement below." data-hi="कृपया नीचे दिए गए प्रत्येक विवरण के लिए हाँ (YES) या नहीं (NO) का उत्तर दें।">Please answer YES or NO for each statement below.</p>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="E1. Do you regularly listen to audio on earphones to help you fall asleep?" data-hi="E1. क्या आप सोने में मदद के लिए नियमित रूप से ईयरफोन पर ऑडियो सुनते हैं?">E1. Do you regularly listen to audio on earphones to help you fall asleep?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="e1" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="e1" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="E2. Do you feel earphone usage disturbs or delays your sleep?" data-hi="E2. क्या आपको लगता है कि ईयरफोन का उपयोग आपकी नींद में बाधा डालता है या देरी करता है?">E2. Do you feel earphone usage disturbs or delays your sleep?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="e2" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="e2" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-label" data-en="E3. Do you wake up feeling tired, fatigued, or unrefreshed in the morning?" data-hi="E3. क्या आप सुबह उठने पर थकान, कमजोरी या तरोताजा महसूस नहीं करते हैं?">E3. Do you wake up feeling tired, fatigued, or unrefreshed in the morning?</div>
+            <div class="yn-group">
+              <div class="yn-btn yes" data-field="e3" data-val="yes" onclick="selectYN(this)" data-en="Yes" data-hi="हाँ">Yes</div>
+              <div class="yn-btn no" data-field="e3" data-val="no" onclick="selectYN(this)" data-en="No" data-hi="नहीं">No</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" data-en="Back" data-hi="पीछे" onclick="goBack(3)">Back</button>
+        <button class="btn-next" data-en="Continue" data-hi="जारी रखें" onclick="goNext(3)">Continue</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section class="page" id="page-4">
+      <div class="page-header">
+        <div class="badge" data-en="PSQI" data-hi="पीएसक्यूआई">PSQI</div>
+        <h1 class="page-title" data-en="Sleep Quality Assessment" data-hi="नींद की गुणवत्ता का मूल्यांकन">Sleep Quality Assessment</h1>
+      </div>
+
+      <div class="form-card full">
+
+        <div class="field-row two-col">
+          <div class="field-group">
+            <label data-en="Usual Bed Time" data-hi="सामान्य सोने का समय">Usual Bed Time</label>
+            <input type="time" id="psqi-bedtime">
+          </div>
+
+          <div class="field-group">
+            <label data-en="Usual Wake Time" data-hi="सामान्य जागने का समय">Usual Wake Time</label>
+            <input type="time" id="psqi-waketime">
+          </div>
+        </div>
+
+        <div class="field-row two-col">
+          <div class="field-group">
+            <label data-en="Sleep Latency (min)" data-hi="नींद आने में लगा समय (मिनट)">Sleep Latency (min)</label>
+            <input type="number" id="psqi-latency" data-ph-en="Minutes" data-ph-hi="मिनट">
+          </div>
+
+          <div class="field-group">
+            <label data-en="Sleep Hours" data-hi="नींद के घंटे">Sleep Hours</label>
+            <input type="number" id="psqi-hours" step="0.5" data-ph-en="Hours" data-ph-hi="घंटे">
+          </div>
+        </div>
+
+        <div class="psqi-instruct" data-en="Select the frequency that best matches the participant's experience." data-hi="उस आवृत्ति का चयन करें जो प्रतिभागी के अनुभव से सबसे अच्छी तरह मेल खाती हो।">
+          Select the frequency that best matches the participant's experience.
+        </div>
+
+        <div id="psqi-q5-items"></div>
+
+        <!-- Q6 -->
+        <div class="psqi-item">
+          <div class="psqi-item-label" data-en="During the past month, how would you rate your sleep quality overall?" data-hi="पिछले महीने के दौरान, आप कुल मिलाकर अपनी नींद की गुणवत्ता को कैसे आंकेंगे?">
+            During the past month, how would you rate your sleep quality overall?
+          </div>
+
+          <div class="psqi-freq-group" id="psqi-q6">
+            <div class="chip" onclick="selectChip(this,'psqi-q6')" data-value="0" data-en="Very good" data-hi="बहुत अच्छा">Very good</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q6')" data-value="1" data-en="Fairly good" data-hi="काफ़ी अच्छा">Fairly good</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q6')" data-value="2" data-en="Fairly bad" data-hi="काफ़ी खराब">Fairly bad</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q6')" data-value="3" data-en="Very bad" data-hi="बहुत खराब">Very bad</div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="psqi-item">
+          <div class="psqi-item-label" data-en="During the past month, how often have you taken medicine to help you sleep?" data-hi="पिछले महीने के दौरान, आपने सोने में मदद के लिए कितनी बार दवा ली है?">
+            During the past month, how often have you taken medicine to help you sleep?
+          </div>
+
+          <div class="psqi-freq-group" id="psqi-q7">
+            <div class="chip" onclick="selectChip(this,'psqi-q7')" data-value="0" data-en="Not during past month" data-hi="पिछले महीने नहीं">Not during past month</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q7')" data-value="1" data-en="&lt; once/week" data-hi="&lt; सप्ताह में एक बार">&lt; once/week</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q7')" data-value="2" data-en="1–2×/week" data-hi="सप्ताह में 1–2 बार">1–2×/week</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q7')" data-value="3" data-en="≥ 3×/week" data-hi="सप्ताह में ≥ 3 बार">≥ 3×/week</div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="psqi-item">
+          <div class="psqi-item-label" data-en="Trouble staying awake while driving/eating/social activity?" data-hi="वाहन चलाने/खाना खाने/सामाजिक गतिविधियों के दौरान जागते रहने में परेशानी?">
+            Trouble staying awake while driving/eating/social activity?
+          </div>
+
+          <div class="psqi-freq-group" id="psqi-q8">
+            <div class="chip" onclick="selectChip(this,'psqi-q8')" data-value="0" data-en="Not during past month" data-hi="पिछले महीने नहीं">Not during past month</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q8')" data-value="1" data-en="&lt; once/week" data-hi="&lt; सप्ताह में एक बार">&lt; once/week</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q8')" data-value="2" data-en="1–2×/week" data-hi="सप्ताह में 1–2 बार">1–2×/week</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q8')" data-value="3" data-en="≥ 3×/week" data-hi="सप्ताह में ≥ 3 बार">≥ 3×/week</div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="psqi-item">
+          <div class="psqi-item-label" data-en="Problem keeping enthusiasm to get things done?" data-hi="काम पूरा करने के लिए उत्साह बनाए रखने में समस्या?">
+            Problem keeping enthusiasm to get things done?
+          </div>
+
+          <div class="psqi-freq-group" id="psqi-q9">
+            <div class="chip" onclick="selectChip(this,'psqi-q9')" data-value="0" data-en="No problem" data-hi="कोई समस्या नहीं">No problem</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q9')" data-value="1" data-en="Slight problem" data-hi="हल्की समस्या">Slight problem</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q9')" data-value="2" data-en="Somewhat a problem" data-hi="कुछ हद तक समस्या">Somewhat a problem</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q9')" data-value="3" data-en="Very big problem" data-hi="बहुत बड़ी समस्या">Very big problem</div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="psqi-item">
+          <div class="psqi-item-label" data-en="Do you have a bed partner or roommate?" data-hi="क्या आपके पास कोई बेड पार्टनर या रूममेट है?">
+            Do you have a bed partner or roommate?
+          </div>
+
+          <div class="psqi-freq-group" id="psqi-q10">
+            <div class="chip" onclick="selectChip(this,'psqi-q10');togglePartnerQ(false)" data-value="0" data-en="No bed partner" data-hi="कोई बेड पार्टनर नहीं">No bed partner</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q10');togglePartnerQ(true)" data-value="1" data-en="Partner in other room" data-hi="पार्टनर दूसरे कमरे में">Partner in other room</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q10');togglePartnerQ(true)" data-value="2" data-en="Same room, different bed" data-hi="एक ही कमरा, अलग बेड">Same room, different bed</div>
+            <div class="chip" onclick="selectChip(this,'psqi-q10');togglePartnerQ(true)" data-value="3" data-en="Same bed" data-hi="एक ही बेड">Same bed</div>
+          </div>
+        </div>
+        <div id="partner-questions" style="display:none; width:100%;">
+          <div class="psqi-instruct" style="margin-top:14px;"
+            data-en="If you have a roommate or bed partner, ask them about how often you have had the following symptoms in the past month:"
+            data-hi="यदि आपके पास रूममेट या बेड पार्टनर है, तो उनसे पूछें कि पिछले महीने में आपको कितनी बार निम्नलिखित लक्षण हुए हैं:">
+            If you have a roommate or bed partner, ask them about how often you have had the following symptoms in the past month:
+          </div>
+          <div id="psqi-partner-items"></div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" data-en="Back" data-hi="पीछे" onclick="goBack(4)">Back</button>
+        <button class="btn-next" data-en="Submit" data-hi="जमा करें" onclick="goNext(4)">Submit</button>
+      </div>
+    </section>
+
+    <!-- PAGE 5 -->
+    <section class="page" id="page-5">
+      <div class="thank-you-wrap">
+        <div class="ty-icon">✅</div>
+        <div class="ty-title" data-en="Submission Complete" data-hi="जमा करना पूर्ण हुआ">Submission Complete</div>
+        <div class="ty-sub" data-en="Thank you for participating in the ICMR-STS 2026 study." data-hi="ICMR-STS 2026 अध्ययन में भाग लेने के लिए धन्यवाद।">
+          Thank you for participating in the ICMR-STS 2026 study.
+        </div>
+
+        <div class="ty-id" id="ty-pid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ADMIN FAB -->
+  <div class="admin-fab" onclick="showAdminLogin()">⚙</div>
+
+  <!-- ADMIN LOGIN -->
+  <div class="modal-overlay" id="admin-modal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-title" data-en="Admin Login" data-hi="व्यवस्थापक लॉगिन">Admin Login</div>
+
+      <div class="field-group">
+        <label data-en="Username" data-hi="उपयोगकर्ता नाम">Username</label>
+        <input id="admin-user" type="text">
+      </div>
+
+      <br>
+
+      <div class="field-group">
+        <label data-en="Password" data-hi="पासवर्ड">Password</label>
+        <input id="admin-pass" type="password">
+      </div>
+
+      <div class="admin-err" id="admin-err" style="display:none;" data-en="Invalid credentials." data-hi="अवैध क्रेडेंशियल।">
+        Invalid credentials.
+      </div>
+
+      <div class="modal-btns">
+        <button class="btn-back small" onclick="closeAdminModal()" data-en="Cancel" data-hi="रद्द करें">Cancel</button>
+        <button class="btn-next" onclick="adminLogin()" data-en="Login" data-hi="लॉगिन">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="admin-overlay" id="admin-dashboard" style="display:none;">
+    <div class="admin-panel">
+
+      <div class="admin-header">
+        <div>
+          <div class="admin-title" data-en="Participant Records" data-hi="प्रतिभागी रिकॉर्ड">Participant Records</div>
+          <div class="admin-subtitle">ICMR-STS 2026</div>
+        </div>
+
+        <div class="admin-header-right">
+          <div class="admin-count" id="admin-count">0 Profiles</div>
+          <button class="btn-back small" onclick="closeAdmin()" data-en="Close" data-hi="बंद करें">Close</button>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th data-en="PID" data-hi="पीआईडी">PID</th>
+              <th data-en="Name" data-hi="नाम">Name</th>
+              <th data-en="Age" data-hi="आयु">Age</th>
+              <th data-en="Gender" data-hi="लिंग">Gender</th>
+              <th data-en="Contact" data-hi="संपर्क">Contact</th>
+              <th data-en="Date" data-hi="दिनांक">Date</th>
+              <th data-en="Form" data-hi="प्रपत्र">Form</th>
+              <th data-en="Status" data-hi="स्थिति">Status</th>
+              <th data-en="Action" data-hi="कार्रवाई">Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="admin-tbody"></tbody>
+        </table>
+
+        <div class="admin-empty" id="admin-empty" data-en="No participant records found." data-hi="कोई प्रतिभागी रिकॉर्ड नहीं मिला।">
+          No participant records found.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" id="detail-modal" style="display:none;">
+    <div class="modal-box wide">
+      <div class="modal-title" id="detail-title"></div>
+
+      <div class="detail-body" id="detail-body"></div>
+
+      <div class="modal-btns">
+        <button class="btn-back" onclick="closeDetailModal()" data-en="Close" data-hi="बंद करें">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
