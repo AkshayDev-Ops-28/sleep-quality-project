@@ -750,7 +750,9 @@ function openAdminDashboard() {
   }
 }
 
-
+function closeAdmin() {
+  document.getElementById('admin-dashboard').style.display = 'none';
+}
 
 function deleteUser(pid) {
   if (!confirm('Do you really want to delete this user?')) return;
