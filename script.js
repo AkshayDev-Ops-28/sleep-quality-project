@@ -644,13 +644,42 @@ function generatePID() {
   return `STS-${ts}-${rand}`;
 }
 
+/* ─── SUPABASE BACKUP INIT ──────────────────────── */
+const SUPABASE_URL = 'https://xtmhlebcugpzbfpojrvz.supabase.co'; // Replace with your URL
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0bWhsZWJjdWdwemJmcG9qcnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMTQ5NDAsImV4cCI6MjEwNjY5MDk0MH0.WXCDhn9D2faubsejb3eaVog99zM23A5wN4dyHZAa010'; // Replace with your Key
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 /* ─── LOCAL STORAGE ─────────────────────────────── */
+/* ─── LOCAL STORAGE & SUPABASE BACKUP ───────────── */
 const STORAGE_KEY = 'icmr_sts_2026_records';
 
-function saveRecord(record) {
+async function saveRecord(record) {
+  // 1. Existing localStorage logic (remains unchanged)
   const all = getRecords();
   all.push(record);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+
+  // 2. Supabase Backup Logic (runs asynchronously)
+  try {
+    const { error } = await supabaseClient
+      .from('records_backup')
+      .insert([
+        {
+          pid: record.pid,
+          form_type: record.form,
+          eligibility: record.eligibility || 'N/A',
+          full_data: record // Dumps the complete JSON object for backup
+        }
+      ]);
+
+    if (error) {
+      console.error('Supabase backup failed:', error.message);
+    } else {
+      console.log('Record successfully backed up to Supabase.');
+    }
+  } catch (err) {
+    console.error('Unexpected error during Supabase backup:', err);
+  }
 }
 
 function getRecords() {
